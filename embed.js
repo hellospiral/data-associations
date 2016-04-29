@@ -16,7 +16,7 @@ var userSchema = new mongoose.Schema({
 });
 var User = mongoose.model("User", userSchema);
 
-var newUser = new User({
+/*var newUser = new User({
     email: "Mike@mike.edu",
     name: "Mike Smith"
 });
@@ -33,7 +33,7 @@ newUser.save(function(err, user) {
     else{
         console.log(user);
     }
-});
+});*/
 
 /*var newPost = new Post({
     title: "Buckets",
@@ -47,3 +47,21 @@ newPost.save(function(err, post) {
         console.log(post);
     }
 });*/
+
+User.findOne({name: "Mike Smith"}, function(err, user){
+    if(err){
+        //console.log(err);
+    } else{
+        user.posts.push({
+            title: "Why I'm going to implode",
+            content: "Honestly I'm still trying to figure it out"
+        });
+        user.save(function(err, user) {
+            if(err){
+                console.log(err);
+            } else{
+                console.log(user);
+            }
+        })
+    }
+});
