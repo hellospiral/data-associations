@@ -20,3 +20,29 @@ var userSchema = new mongoose.Schema({
     ]
 });
 var User = mongoose.model("User", userSchema);
+
+Post.create({
+    title: "How to spot an inbred",
+    content: "it's not that hard"
+}, function(err, post) {
+    User.findOne({email: "Bob@gmail.com"}, function(err, foundUser) {
+        if(err){
+            console.log(err);
+        }
+        else{
+            foundUser.posts.push(post);
+            foundUser.save(function(err, data){
+                if(err){
+                    console.log(err);
+                }else{
+                    console.log(data);
+                }
+            })
+        }
+    });
+});
+
+/*User.create({
+    email: "Bob@gmail.com",
+    name: "Bob Belcher"
+});*/
