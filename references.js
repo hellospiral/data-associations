@@ -20,7 +20,7 @@ var userSchema = new mongoose.Schema({
     ]
 });
 var User = mongoose.model("User", userSchema);
-
+/*
 Post.create({
     title: "How to spot an inbred",
     content: "it's not that hard"
@@ -40,6 +40,19 @@ Post.create({
             })
         }
     });
+});
+*/
+
+// find user
+// find all posts for that user
+
+User.findOne({email: "Bob@gmail.com"}).populate("posts").exec(function(err, user) {
+    if(err){
+        console.log(err);
+    }
+    else{
+        console.log(user);
+    }
 });
 
 /*User.create({
