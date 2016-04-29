@@ -1,29 +1,12 @@
 var mongoose = require("mongoose");
 mongoose.connect("mongodb://localhost/blog_demo_2");
 
-//POST - title, content
-var postSchema = new mongoose.Schema({
-    title: String,
-    content: String
-});
-var Post = mongoose.model("Post", postSchema);
+var Post = require("./models/post");
+var User = require("./models/user");
 
-//USER - email, name
-var userSchema = new mongoose.Schema({
-    email: String,
-    name: String,
-    posts: [
-        {
-            type: mongoose.Schema.Types.ObjectId,
-            ref: "Post"
-        }
-    ]
-});
-var User = mongoose.model("User", userSchema);
-/*
 Post.create({
-    title: "How to spot an inbred",
-    content: "it's not that hard"
+    title: "Bacon Boy",
+    content: "Have you seen Island of Dr. Moreau?"
 }, function(err, post) {
     User.findOne({email: "Bob@gmail.com"}, function(err, foundUser) {
         if(err){
@@ -41,11 +24,11 @@ Post.create({
         }
     });
 });
-*/
+
 
 // find user
 // find all posts for that user
-
+/*
 User.findOne({email: "Bob@gmail.com"}).populate("posts").exec(function(err, user) {
     if(err){
         console.log(err);
@@ -54,7 +37,7 @@ User.findOne({email: "Bob@gmail.com"}).populate("posts").exec(function(err, user
         console.log(user);
     }
 });
-
+*/
 /*User.create({
     email: "Bob@gmail.com",
     name: "Bob Belcher"
